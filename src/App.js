@@ -1,14 +1,11 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { increment } from "./actions/increment.js";
-import { decrement } from "./actions/decrement.js";
 import { receive } from "./actions/GetData";
 import { getData } from "./components/GetData";
 import React, { useState, useEffect } from "react";
 require("dotenv").config();
 
 function App() {
-  const counter = useSelector((state) => state.counter);
   const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
   const API = process.env.REACT_APP_API_KEY;
@@ -36,21 +33,6 @@ function App() {
   return (
     <div>
       teste teste teste
-      <button
-        onClick={() => {
-          dispatch(increment(1));
-        }}
-      >
-        aumenta
-      </button>
-      <div>{counter}</div>
-      <button
-        onClick={() => {
-          dispatch(decrement());
-        }}
-      >
-        diminui
-      </button>
       <button
         onClick={() => {
           getData(dispatch);
