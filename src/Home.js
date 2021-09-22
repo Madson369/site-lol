@@ -35,7 +35,14 @@ function Home() {
     <div>
       <div className="container_main">
         <div className="container_search">
-          <Input onChange={onChange} placeholder="Pesquisar..." />
+          <Input
+            onKeyDown={(event) => {
+              if(event.key =='Enter')
+              {handleClick()};
+            }}
+            onChange={onChange}
+            placeholder="Pesquisar..."
+          />
           <button
             className="button_search"
             // onClick={() => {

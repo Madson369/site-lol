@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getRanks, getPlayerData } from "./GetData";
 import { useState, useEffect } from "react";
+import { clear } from "../actions/GetData.js";
 
 const Player = () => {
   let { id } = useParams();
@@ -9,21 +10,24 @@ const Player = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    return () => {
+      dispatch(clear());
+    };
+  }, []);
+
+  useEffect(() => {
     getPlayerData(dispatch, id);
   }, []);
 
   console.log(data);
-  if (data && data.length > 1) {
-    console.log(data[0].name, data[1][1].rank);
-  }
+
   return (
     <div>
       {data && data.length > 1 ? (
         <div>
-          {data[0].name}|{data[0].profileIconId}|{data[1][0].tier}|
-          {data[1][0].rank}|{data[1][0].wins}|{data[1][0].losses}|
+          {data[0].name}|{data[0].profileIconId}||
           <img
-            src={"public/images/0.png"}
+            src={`${window.location.origin}/assets/images/${data[0].profileIconId}.png`}
           ></img>
         </div>
       ) : null}

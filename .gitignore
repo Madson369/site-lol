@@ -16,7 +16,8 @@
 .env
 
 #imagens
-public/images
+public/assets/images
+public\assets\images
 # misc
 .DS_Store
 .env.local
