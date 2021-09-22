@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getRanks, getPlayerData } from "./components/GetData";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { Input } from "./components/Input.styles";
 
 require("dotenv").config();
 
@@ -34,11 +35,7 @@ function Home() {
     <div>
       <div className="container_main">
         <div className="container_search">
-          <input
-            className="input_search"
-            onChange={onChange}
-            placeholder="Pesquisar..."
-          />
+          <Input onChange={onChange} placeholder="Pesquisar..." />
           <button
             className="button_search"
             // onClick={() => {

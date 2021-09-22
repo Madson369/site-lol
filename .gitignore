@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 
+
 # testing
 /coverage
 
@@ -14,6 +15,8 @@
 #API keys
 .env
 
+#imagens
+public/images
 # misc
 .DS_Store
 .env.local
