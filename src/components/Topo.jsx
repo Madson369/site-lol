@@ -14,13 +14,16 @@ const Topo = () => {
 
   return (
     <div className="container_topo">
-      <div
+      <img
+      className='logo'
+      src={`${window.location.origin}/assets/ronaldogg.png`}
         onClick={() => {
           handleClickk();
         }}
+        alt='ronaldo.gg'
       >
-        Madson.gg o mais pica krai
-      </div>
+        
+      </img>
       <button
         onClick={() => {
           handleClick();

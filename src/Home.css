@@ -1,24 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap");
+
 html,
 body {
   margin: 0px;
   height: 100%;
+  background-color: #17172e;
+}
+
+.logo{
+  cursor: pointer;
+}
+.container {
+  display: flex;
 }
 
 .container_main {
-  background-color: #5383e8;
-  height: calc(100vh - 21px);
+  background-color: #17172e;
+  height: calc(100vh - 95px);
+  display: flex;
+  align-items: center;
+  margin: auto;
 }
 
 .container_topo {
-  background-color: #5383e8;
+  background-color: #17172e;
+  color: white;
   display: flex;
+  height: 95px;
 }
 
 .container_search {
-  background-color: #5383e8;
+  background-color: #17172e;
   display: flex;
   justify-content: center;
-  padding-top: 441px;
   height: 40px;
 }
 
@@ -43,4 +57,88 @@ body {
 
 .input_search:focus {
   outline: none;
+}
+
+.player_info {
+  display: flex;
+  padding: 15px 0 0 15px;
+}
+
+.profile_img_container {
+  height: 100px;
+  width: 100px;
+  order: 1;
+}
+
+.player_bagulho {
+  order: 2;
+  font-size: 36px;
+  font-weight: 600;
+  color: white;
+  margin-left: 15px;
+}
+
+.profile_img {
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.icon_border {
+  position: relative;
+  border: 2px solid #17172e;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  /* box-shadow: 0 0 3pt 2pt #2b2b72; */
+  box-shadow: 0 0 3pt 2pt #414165;
+  overflow: hidden;
+}
+
+.level_header {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #414165;
+  background-color: #06061f;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.container_content {
+  display: flex;
+  height: calc(100vh - 36px);
+}
+
+.container_teste {
+  width: 500px;
+  background-color: #17172e;
+  height: 500px;
+  align-self: center;
+  display: block;
+  margin: auto;
+}
+
+.region_selector {
+  width: 90px;
+  /* overflow: hidden; */
+  border-radius: 10px 0 0px 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.region_dropdown{
+  position: absolute;
+  top: 100%;
+  z-index: 2;
 }

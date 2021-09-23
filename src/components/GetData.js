@@ -21,10 +21,10 @@ async function getRanks(dispatch) {
   }
 }
 
-async function getPlayerData(dispatch, nick) {
+async function getPlayerData(dispatch, nick,region) {
   try {
     const response = await axios.get(
-      `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nick}?api_key=${process.env.REACT_APP_API_KEY}`
+      `https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nick}?api_key=${process.env.REACT_APP_API_KEY}`
     );
 
     console.log(response.data);
