@@ -31,6 +31,7 @@ async function getPlayerData(dispatch, nick, region) {
     //console.log(response.data);
     dispatch(clear());
     dispatch(receive(response.data));
+    console.log(response.data)
     const encryptedSummonerId = response.data.id;
     const puuid = response.data.puuid;
     //console.log(puuid);

@@ -50,7 +50,7 @@ function Home() {
     "LAN",
   ];
 
-  let regions2 = {
+  const regions2 = {
     BR: "br1",
     NA: "na1",
     EUW: "euw1",

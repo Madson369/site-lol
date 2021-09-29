@@ -48,18 +48,41 @@ const Player = () => {
           ) : null}
         </div>
         <div className="matches_teste">
-          {matches && matches.length > 10 ? (
+          {matches && matches.length == 11 ? (
             <div>
               {matches.map((p, index) =>
-                index > 0
-                  ? p.info.participants.map((w) => {
-                      return (
-                        <div>
-                          <span> {w.summonerName} </span>
-                        </div>
-                      );
-                    })
-                  : null
+                index > 0 ? (
+                  <div className="match_container">
+                    <div className="team_1">
+                      {p.info.participants.map((w, index) => {
+                        return index < 5 ? (
+                          <div className="player">
+                            {w.summonerName}
+                            <img
+                              className="champion_icon_img"
+                              alt="champion-icon"
+                              src={`${window.location.origin}/assets/champion/${w.championName}.png`}
+                            ></img>
+                          </div>
+                        ) : null;
+                      })}
+                    </div>
+                    <div className="team_2">
+                      {p.info.participants.map((w, index) => {
+                        return index >= 5 ? (
+                          <div className="player">
+                            {w.summonerName}
+                            <img
+                              className="champion_icon_img"
+                              alt="champion-icon"
+                              src={`${window.location.origin}/assets/champion/${w.championName}.png`}
+                            ></img>
+                          </div>
+                        ) : null;
+                      })}
+                    </div>
+                  </div>
+                ) : null
               )}
             </div>
           ) : (
