@@ -1,6 +1,6 @@
 import axios from "axios";
 import { receive, clear } from "../actions/GetData.js";
-import { collect } from "../actions/GetMatch.js";
+import { collect, wipe } from "../actions/GetMatch.js";
 
 async function getRanks(dispatch) {
   try {
@@ -75,7 +75,7 @@ async function getMatchId(dispatch, puuid, region) {
     const response = await axios.get(
       `https://${regions[region]}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10&api_key=${process.env.REACT_APP_API_KEY}`
     );
-
+    dispatch(wipe())
     dispatch(collect(response.data));
     response.data.map((p) => getMatchData(dispatch, p, regions[region]));
     return response;

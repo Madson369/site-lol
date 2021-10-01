@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { clear } from "../actions/GetData.js";
 import { define } from "../actions/DefRegion";
 import { wipe } from "../actions/GetMatch";
+import { useHistory } from "react-router-dom";
 
 const Player = () => {
   let { id } = useParams();
@@ -12,6 +13,8 @@ const Player = () => {
   const region = useSelector((state) => state.region);
   const matches = useSelector((state) => state.match);
   const dispatch = useDispatch();
+  const history = useHistory();
+  let items = [];
 
   useEffect(() => {
     return () => {
@@ -21,11 +24,21 @@ const Player = () => {
     };
   }, []);
 
+  // useEffect(() => {
+  //   getPlayerData(dispatch, id, region);
+  // }, []);
+
   useEffect(() => {
     getPlayerData(dispatch, id, region);
-  }, []);
+  }, [id]);
 
-  console.log(matches);
+  if (matches.length == 11) {
+    console.log(matches);
+  }
+
+  function handleClick(name) {
+    history.push(`/player/${name}`);
+  }
 
   return (
     <div className="container_content">
@@ -53,33 +66,117 @@ const Player = () => {
               {matches.map((p, index) =>
                 index > 0 ? (
                   <div className="match_container">
-                    <div className="team_1">
-                      {p.info.participants.map((w, index) => {
-                        return index < 5 ? (
-                          <div className="player">
-                            {w.summonerName}
-                            <img
-                              className="champion_icon_img"
-                              alt="champion-icon"
-                              src={`${window.location.origin}/assets/champion/${w.championName}.png`}
-                            ></img>
+                    <div className="kda_container">
+                      {p.info.participants.map((w) => {
+                        return w.summonerName == id ? (
+                          <div>
+                            <span className="kda">
+                              {w.kills}
+                              <span className="slash">/</span>
+                              {w.deaths}
+                              <span className="slash">/</span>
+                              {w.assists}
+                            </span>
+                            <div className="kda_ratio">
+                              {((w.deaths + w.assists) / w.kills).toFixed(2)}KDA
+                            </div>
+                            <div className="cs">
+                              {w.totalMinionsKilled}CS(
+                              {(
+                                w.totalMinionsKilled /
+                                (p.info.gameDuration / 60000)
+                              ).toFixed(1)}
+                              )
+                            </div>
                           </div>
                         ) : null;
                       })}
                     </div>
-                    <div className="team_2">
-                      {p.info.participants.map((w, index) => {
-                        return index >= 5 ? (
-                          <div className="player">
-                            {w.summonerName}
-                            <img
-                              className="champion_icon_img"
-                              alt="champion-icon"
-                              src={`${window.location.origin}/assets/champion/${w.championName}.png`}
-                            ></img>
+                    <div className="items_container">
+                      {p.info.participants.map((w) => {
+                        items = [
+                          w.item0,
+                          w.item1,
+                          w.item2,
+                          w.item3,
+                          w.item4,
+                          w.item5,
+                        ];
+
+                        return w.summonerName == id ? (
+                          <div className="item_overall">
+                            <div className="item_teste">
+                              {items.map((i) => {
+                                return i != 0 ? (
+                                  <div className="item_container">
+                                    <img
+                                      className="item_icon_img"
+                                      alt="item-icon"
+                                      src={`${window.location.origin}/assets/item/${i}.png`}
+                                    ></img>
+                                  </div>
+                                ) : (
+                                  <div className="item_container"></div>
+                                );
+                              })}
+                            </div>
+                            <div className="item_container" className="trinket">
+                              <img
+                                className="item_icon_img"
+                                alt="item-icon"
+                                src={`${window.location.origin}/assets/item/${w.item6}.png`}
+                              ></img>
+                            </div>
                           </div>
                         ) : null;
                       })}
+                    </div>
+
+                    <div className="teams_overall">
+                      <div className="teams_container">
+                        <div className="team_1">
+                          {p.info.participants.map((w, index) => {
+                            return index < 5 ? (
+                              <div className="player">
+                                <span
+                                  className="player_name"
+                                  onClick={() => {
+                                    handleClick(w.summonerName);
+                                  }}
+                                >
+                                  {w.summonerName}
+                                </span>
+                                <img
+                                  className="champion_icon_img"
+                                  alt="champion-icon"
+                                  src={`${window.location.origin}/assets/champion/${w.championName}.png`}
+                                ></img>
+                              </div>
+                            ) : null;
+                          })}
+                        </div>
+                        <div className="team_2">
+                          {p.info.participants.map((w, index) => {
+                            return index >= 5 ? (
+                              <div className="player">
+                                <span
+                                  className="player_name"
+                                  onClick={() => {
+                                    handleClick(w.summonerName);
+                                  }}
+                                >
+                                  {w.summonerName}
+                                </span>
+                                <img
+                                  className="champion_icon_img"
+                                  alt="champion-icon"
+                                  src={`${window.location.origin}/assets/champion/${w.championName}.png`}
+                                ></img>
+                              </div>
+                            ) : null;
+                          })}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ) : null
