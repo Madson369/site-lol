@@ -66,71 +66,80 @@ const Player = () => {
               {matches.map((p, index) =>
                 index > 0 ? (
                   <div className="match_container">
-                    <div className="kda_container">
-                      {p.info.participants.map((w) => {
-                        return w.summonerName == id ? (
-                          <div>
-                            <span className="kda">
-                              {w.kills}
-                              <span className="slash">/</span>
-                              {w.deaths}
-                              <span className="slash">/</span>
-                              {w.assists}
-                            </span>
-                            <div className="kda_ratio">
-                              {((w.deaths + w.assists) / w.kills).toFixed(2)}KDA
-                            </div>
-                            <div className="cs">
-                              {w.totalMinionsKilled}CS(
-                              {(
-                                w.totalMinionsKilled /
-                                (p.info.gameDuration / 60000)
-                              ).toFixed(1)}
-                              )
-                            </div>
+                    {p.info.participants.map((w) => {
+                      return w.summonerName == id ? (
+                        <div className="to_sem_ideia">
+                          <div className="champion_face_container">
+                            <img
+                              className="champion_face"
+                              alt="champ_icon"
+                              src={`${window.location.origin}/assets/champion/${w.championName}.png`}
+                            ></img>
                           </div>
-                        ) : null;
-                      })}
-                    </div>
-                    <div className="items_container">
-                      {p.info.participants.map((w) => {
-                        items = [
-                          w.item0,
-                          w.item1,
-                          w.item2,
-                          w.item3,
-                          w.item4,
-                          w.item5,
-                        ];
 
-                        return w.summonerName == id ? (
-                          <div className="item_overall">
-                            <div className="item_teste">
-                              {items.map((i) => {
-                                return i != 0 ? (
-                                  <div className="item_container">
-                                    <img
-                                      className="item_icon_img"
-                                      alt="item-icon"
-                                      src={`${window.location.origin}/assets/item/${i}.png`}
-                                    ></img>
-                                  </div>
-                                ) : (
-                                  <div className="item_container"></div>
-                                );
-                              })}
-                            </div>
-                            <div className="item_container" className="trinket">
-                              <img
-                                className="item_icon_img"
-                                alt="item-icon"
-                                src={`${window.location.origin}/assets/item/${w.item6}.png`}
-                              ></img>
+                          <div className="kda_container">
+                            <div>
+                              <span className="kda">
+                                {w.kills}
+                                <span className="slash">/</span>
+                                {w.deaths}
+                                <span className="slash">/</span>
+                                {w.assists}
+                              </span>
+                              <div className="kda_ratio">
+                                {((w.kills + w.assists) / w.deaths).toFixed(2)}
+                                KDA
+                              </div>
+                              <div className="cs">
+                                {w.totalMinionsKilled}CS(
+                                {(
+                                  w.totalMinionsKilled /
+                                  (p.info.gameDuration / 60000)
+                                ).toFixed(1)}
+                                )
+                              </div>
                             </div>
                           </div>
-                        ) : null;
-                      })}
-                    </div>
+                          <div className="items_container">
+                            <div className="item_overall">
+                              <div className="item_teste">
+                                {[
+                                  w.item0,
+                                  w.item1,
+                                  w.item2,
+                                  w.item3,
+                                  w.item4,
+                                  w.item5,
+                                ].map((i) => {
+                                  return i != 0 ? (
+                                    <div className="item_container">
+                                      <img
+                                        className="item_icon_img"
+                                        alt="item-icon"
+                                        src={`${window.location.origin}/assets/item/${i}.png`}
+                                      ></img>
+                                    </div>
+                                  ) : (
+                                    <div className="item_container"></div>
+                                  );
+                                })}
+                              </div>
+                              <div
+                                className="item_container"
+                                className="trinket"
+                              >
+                                <img
+                                  className="item_icon_img"
+                                  alt="item-icon"
+                                  src={`${window.location.origin}/assets/item/${w.item6}.png`}
+                                ></img>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : // fim aq
+                      null;
+                    })}
 
                     <div className="teams_overall">
                       <div className="teams_container">
