@@ -15,9 +15,6 @@
 #API keys
 .env
 
-#imagens
-public/assets/images
-public\assets\images
 # misc
 .DS_Store
 .env.local
