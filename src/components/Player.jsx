@@ -7,7 +7,8 @@ import { define } from "../actions/DefRegion";
 import { wipe } from "../actions/GetMatch";
 import { useHistory } from "react-router-dom";
 import { CalcTime } from "./CalcTime";
-
+import { Skeleton } from "./Skeleton.styles";
+import { Rotate } from "./Rotate";
 const Player = () => {
   let { id } = useParams();
   const data = useSelector((state) => state.data);
@@ -77,7 +78,12 @@ const Player = () => {
                 </div>
               </div>
             </div>
-          ) : null}
+          ) : (
+            <div className='skeleton_topo'>
+              <Skeleton width={"105px"} height={"105px"}></Skeleton>
+              <Skeleton width={"220px"} height={"100px"}></Skeleton>
+            </div>
+          )}
         </div>
         <div className="matches_teste">
           {sortedmatches && sortedmatches.length == 11 ? (
@@ -88,9 +94,22 @@ const Player = () => {
                     {p.info.participants.map((w) => {
                       return w.summonerName == id ? (
                         <div className="to_sem_ideia">
-                          <div className="game_info_container">
-                            <span>{p.info.gameMode}</span>
-                            <span>{CalcTime((+new Date() - p.info.gameCreation))}</span>
+                          <div className="game_info_overall">
+                            <div className="game_info_container">
+                              <span className="game_mode">
+                                {p.info.gameMode}
+                              </span>
+                              <span className="game_creation">
+                                {CalcTime(+new Date() - p.info.gameCreation)}
+                              </span>
+                              <span className="game_result">
+                                {w.win ? (
+                                  <span className="game_win">WIN</span>
+                                ) : (
+                                  <span className="game_loss">LOSS</span>
+                                )}
+                              </span>
+                            </div>
                           </div>
                           <div className="champion_face_container">
                             <img
@@ -231,7 +250,13 @@ const Player = () => {
               )}
             </div>
           ) : (
-            <span>Deu Ruim</span>
+            <div>
+              {[1,2,3,4,5,6,7,8].map(() => {
+                return(<Skeleton width={"600px"} height={"100px"} border={true}></Skeleton>)
+              }) }
+                
+              
+            </div>
           )}
         </div>
       </div>

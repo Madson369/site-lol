@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Input } from "./components/Input.styles";
 import { Region } from "./components/Regions.styles";
 import { define } from "./actions/DefRegion";
+import { RegionDropwn } from "./components/Dropdown.styles";
 
 require("dotenv").config();
 
@@ -76,22 +77,21 @@ function Home() {
             <Region onClick={() => setVisible(true)} cor={cor}>
               {cor}
             </Region>
-            <div className="region_dropdown">
-              {visible
-                ? regions.map((p) => (
-                    <Region
-                      onClick={() => {
-                        setCor(p);
-                        setVisible(false);
-                        dispatch(define(regions2[p]));
-                      }}
-                      cor={p}
-                    >
-                      {p}
-                    </Region>
-                  ))
-                : null}
-            </div>
+
+            <RegionDropwn visible={visible}>
+              {regions.map((p) => (
+                <Region
+                  onClick={() => {
+                    setCor(p);
+                    setVisible(false);
+                    dispatch(define(regions2[p]));
+                  }}
+                  cor={p}
+                >
+                  {p}
+                </Region>
+              ))}
+            </RegionDropwn>
           </div>
           <Input
             onKeyDown={(event) => {

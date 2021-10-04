@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap");
 
 html,
+
 body {
   margin: 0px;
   height: 100%;
@@ -62,6 +63,8 @@ body {
 .player_info {
   display: flex;
   padding: 15px 0 0 15px;
+  height: 115px;
+  width: 500px;
 }
 
 .profile_img_container {
@@ -137,11 +140,7 @@ body {
   position: relative;
 }
 
-.region_dropdown {
-  position: absolute;
-  top: 100%;
-  z-index: 2;
-}
+
 
 .matches_teste {
   color: white;
@@ -153,6 +152,7 @@ body {
 
 .team_2 {
   width: 50%;
+  margin-left: 1px;
 }
 
 .match_container {
@@ -193,6 +193,11 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.player_name:hover {
+  text-decoration: underline;
+  color: #fefefe;
 }
 
 .champion_icon_img {
@@ -240,14 +245,15 @@ body {
 
 .item_overall {
   display: flex;
+  margin-left: 10px;
   margin-right: 10px;
 }
 
 .kda_container {
   display: block;
   margin: auto;
-  margin-left: 5px;
-  margin-right: 3px;
+  margin-left: 10px;
+  text-align: center;
 }
 
 .kda {
@@ -301,8 +307,46 @@ body {
   flex-direction: column;
 }
 
-.game_info_container{
+.game_info_container {
   display: flex;
-  flex: row 1;
   flex-direction: column;
+  margin-left: 10px;
+}
+
+.game_info_overall {
+  display: block;
+  margin: auto;
+}
+
+.game_mode {
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.game_creation {
+  font-size: 10px;
+  font-weight: 500;
+  color: #cddcfe;
+}
+
+.game_result {
+  text-align: center;
+}
+
+.game_win {
+  font-size: 12px;
+  font-weight: 700;
+  color: #3273fa;
+}
+
+.game_loss {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff4e50;
+}
+
+
+.skeleton_topo{
+  display: flex;
 }

@@ -7,11 +7,11 @@ const CalcTime = (Time) => {
   let Days = Hours / 24;
 
   if (Days >= 1) {
-    return Math.round(Days) + " Dias";
+    return Math.round(Days) + " Days ago";
   } else if (Hours >= 1 && Hours <= 24) {
-    return Math.round(Hours) + " Horas";
+    return Math.round(Hours) + " Hours ago";
   } else if (Minutes > 1 && Minutes < 60) {
-    return Math.round(Minutes) + " Minutos";
+    return Math.round(Minutes) + " Minutes ago";
   }
   return Math.round(Time) + " Segundos";
 };
