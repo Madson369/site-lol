@@ -79,9 +79,9 @@ const Player = () => {
               </div>
             </div>
           ) : (
-            <div className='skeleton_topo'>
+            <div className="skeleton_topo">
               <Skeleton width={"105px"} height={"105px"}></Skeleton>
-              <Skeleton width={"220px"} height={"100px"}></Skeleton>
+              <Skeleton width={"220px"} height={"50px"}></Skeleton>
             </div>
           )}
         </div>
@@ -249,15 +249,126 @@ const Player = () => {
                 ) : null
               )}
             </div>
-          ) : (
-            <div>
-              {[1,2,3,4,5,6,7,8].map(() => {
-                return(<Skeleton width={"600px"} height={"100px"} border={true}></Skeleton>)
-              }) }
-                
-              
+          ) : [0,1,2,3,4,5,6,7,8,9].map(() => {
+            return <div className="match_container">
+            <div className="skeleton_player_info">
+              <Skeleton
+                width={"50px"}
+                height={"10px"}
+                border={false}
+                margin={true}
+              ></Skeleton>
+              <Skeleton
+                width={"50px"}
+                height={"10px"}
+                border={false}
+                margin={true}
+              ></Skeleton>
+              <Skeleton
+                width={"50px"}
+                height={"10px"}
+                border={false}
+                margin={true}
+              ></Skeleton>
             </div>
-          )}
+            <div className="champion_face_container">
+              <Skeleton
+                width={"50px"}
+                height={"50px"}
+                border={false}
+                margin={false}
+              ></Skeleton>
+              <div className="spell_container">
+                <Skeleton
+                  width={"25px"}
+                  height={"25px"}
+                  border={false}
+                  margin={false}
+                ></Skeleton>
+                <Skeleton
+                  width={"25px"}
+                  height={"25px"}
+                  border={false}
+                  margin={false}
+                ></Skeleton>
+              </div>
+            </div>
+            <div className="kda_container">
+              <Skeleton
+                width={"50px"}
+                height={"10px"}
+                border={false}
+                margin={true}
+              ></Skeleton>
+              <Skeleton
+                width={"50px"}
+                height={"10px"}
+                border={false}
+                margin={true}
+              ></Skeleton>
+              <Skeleton
+                width={"50px"}
+                height={"10px"}
+                border={false}
+                margin={true}
+              ></Skeleton>
+            </div>
+            <div className="items_container">
+              <div className="item_overall">
+                <div className="item_teste">
+                  {[1, 2, 3, 4, 5, 6].map(() => {
+                    return (
+                      <Skeleton
+                        width={"27px"}
+                        height={"27px"}
+                        border={false}
+                        margin={false}
+                      ></Skeleton>
+                    );
+                  })}
+                </div>
+                <div className="trinket">
+                  {" "}
+                  <Skeleton
+                    width={"27px"}
+                    height={"27px"}
+                    border={false}
+                    margin={false}
+                  ></Skeleton>
+                </div>
+              </div>
+            </div>
+
+            <div className="skeleton_teams_overall">
+              <div className="teams_container">
+                <div className="team_1">
+                  {[1, 2, 3, 4, 5].map(() => {
+                    return (
+                      <Skeleton
+                        width={"80px"}
+                        height={"10px"}
+                        border={false}
+                        margin={true}
+                      ></Skeleton>
+                    );
+                  })}
+                </div>
+                <div className="team_2">
+                  {[1, 2, 3, 4, 5].map(() => {
+                    return (
+                      <Skeleton
+                        width={"80px"}
+                        height={"10px"}
+                        border={false}
+                        margin={true}
+                      ></Skeleton>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+          })}
         </div>
       </div>
     </div>

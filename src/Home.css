@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap");
 
 html,
-
 body {
   margin: 0px;
   height: 100%;
@@ -140,8 +139,6 @@ body {
   position: relative;
 }
 
-
-
 .matches_teste {
   color: white;
 }
@@ -253,6 +250,7 @@ body {
   display: block;
   margin: auto;
   margin-left: 10px;
+  margin-right: 0px;
   text-align: center;
 }
 
@@ -346,7 +344,42 @@ body {
   color: #ff4e50;
 }
 
-
-.skeleton_topo{
+.skeleton_topo {
   display: flex;
+}
+
+.skeleton_test {
+  display: flex;
+  width: 100px;
+  height: 85px;
+
+}
+
+.skeleton_teste_container {
+  display: flex;
+  height: 100px;
+  width: 600px;
+  border-radius: 3px;
+  background-color: #11112a;
+  border: 10px solid #11112a;
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.skeleton_player_info{
+  display: block;
+    margin: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.skeleton_teams_overall{
+  display: block;
+  margin: auto;
+  margin-left: 15px;
+  margin-right: 0px;
 }

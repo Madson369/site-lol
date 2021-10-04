@@ -19,11 +19,11 @@ export const Skeleton = styled.div`
   width: ${(props) => props.width};
   border-radius: 3px;
   background-color: #11112a;
-  border: ${(props) => props.border ? '10px solid #11112a':''};
+  border: ${(props) => (props.border ? "10px solid #11112a" : "")};
   position: relative;
   overflow: hidden;
-  margin-top: 10px;
-  margin-bottom: 10px;
+
+  margin: ${(props) => (props.margin ? "10px 0px 10px;" : "")};
 
   ::before {
     content: "";
@@ -33,7 +33,12 @@ export const Skeleton = styled.div`
     top: 0;
     height: 100%;
     width: 200px;
-    background: linear-gradient(to right, #0f0f25 0%, #28283f 50%, #0f0f25 100%);
+    background: linear-gradient(
+      to right,
+      #0f0f25 0%,
+      #28283f 50%,
+      #0f0f25 100%
+    );
     animation: ${loading} 1000ms ease-in-out infinite;
   }
 `;
