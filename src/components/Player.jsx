@@ -6,6 +6,7 @@ import { clear } from "../actions/GetData.js";
 import { define } from "../actions/DefRegion";
 import { wipe } from "../actions/GetMatch";
 import { useHistory } from "react-router-dom";
+import { CalcTime } from "./CalcTime";
 
 const Player = () => {
   let { id } = useParams();
@@ -15,6 +16,8 @@ const Player = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   let items = [];
+
+  let sortedmatches = [];
 
   useEffect(() => {
     return () => {
@@ -34,6 +37,22 @@ const Player = () => {
 
   if (matches.length == 11) {
     console.log(matches);
+
+    let matchids = matches[0];
+    let sortmatches = matches.slice(1).sort((a, b) => {
+      return b.info.gameCreation - a.info.gameCreation;
+    });
+
+    sortedmatches = [matchids, ...sortmatches];
+
+    // matches.sort((a,b) => {
+    //   if (a.info.gameCreation == undefined)
+    //   {return a}
+    //   if (b.info.gameCreation == undefined)
+    //   {return b}
+    //   return b.info.gameCreation - a.info.gameCreation
+    // })
+    // console.log(testadeira)
   }
 
   function handleClick(name) {
@@ -61,20 +80,36 @@ const Player = () => {
           ) : null}
         </div>
         <div className="matches_teste">
-          {matches && matches.length == 11 ? (
+          {sortedmatches && sortedmatches.length == 11 ? (
             <div>
-              {matches.map((p, index) =>
+              {sortedmatches.map((p, index) =>
                 index > 0 ? (
                   <div className="match_container">
                     {p.info.participants.map((w) => {
                       return w.summonerName == id ? (
                         <div className="to_sem_ideia">
+                          <div className="game_info_container">
+                            <span>{p.info.gameMode}</span>
+                            <span>{CalcTime((+new Date() - p.info.gameCreation))}</span>
+                          </div>
                           <div className="champion_face_container">
                             <img
                               className="champion_face"
                               alt="champ_icon"
                               src={`${window.location.origin}/assets/champion/${w.championName}.png`}
                             ></img>
+                            <div className="spell_container">
+                              <img
+                                className="summoner_spell"
+                                alt="=spell_icon"
+                                src={`${window.location.origin}/assets/summoner_spells/${w.summoner1Id}.png`}
+                              ></img>
+                              <img
+                                className="summoner_spell"
+                                alt="spell_icon"
+                                src={`${window.location.origin}/assets/summoner_spells/${w.summoner2Id}.png`}
+                              ></img>
+                            </div>
                           </div>
 
                           <div className="kda_container">
@@ -128,11 +163,15 @@ const Player = () => {
                                 className="item_container"
                                 className="trinket"
                               >
-                                <img
-                                  className="item_icon_img"
-                                  alt="item-icon"
-                                  src={`${window.location.origin}/assets/item/${w.item6}.png`}
-                                ></img>
+                                {w.item6 != 0 ? (
+                                  <img
+                                    className="item_icon_img"
+                                    alt="item-icon"
+                                    src={`${window.location.origin}/assets/item/${w.item6}.png`}
+                                  ></img>
+                                ) : (
+                                  <div className="item_container"></div>
+                                )}
                               </div>
                             </div>
                           </div>

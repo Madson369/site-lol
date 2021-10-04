@@ -241,14 +241,13 @@ body {
 .item_overall {
   display: flex;
   margin-right: 10px;
-
 }
 
 .kda_container {
   display: block;
   margin: auto;
-  margin-left: 0;
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 3px;
 }
 
 .kda {
@@ -274,19 +273,36 @@ body {
   line-height: 17px;
 }
 
-.champion_face{
+.champion_face {
   width: 50px;
   height: 50px;
 }
 
-.champion_face_container{
-  display: block;
+.champion_face_container {
+  display: flex;
   margin: auto;
   margin-left: 0;
   margin-right: 0;
 }
 
-.to_sem_ideia
-{
+.to_sem_ideia {
   display: flex;
+}
+
+.summoner_spell {
+  height: 25px;
+  width: 25px;
+}
+
+.spell_container {
+  display: flex;
+  flex: row;
+
+  flex-direction: column;
+}
+
+.game_info_container{
+  display: flex;
+  flex: row 1;
+  flex-direction: column;
 }
