@@ -39,6 +39,6 @@ export const Skeleton = styled.div`
       #28283f 50%,
       #0f0f25 100%
     );
-    animation: ${loading} 1000ms ease-in-out infinite;
+    animation: ${loading} 1500ms ease-in-out infinite;
   }
 `;

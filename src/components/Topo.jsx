@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-
+import { Checkbox } from "./Checkbox.styles";
 
 const Topo = () => {
   let history = useHistory();
@@ -15,22 +15,23 @@ const Topo = () => {
   return (
     <div className="container_topo">
       <img
-      className='logo'
-      src={`${window.location.origin}/assets/ronaldogg.png`}
+        className="logo"
+        src={`${window.location.origin}/assets/ronaldogg.png`}
         onClick={() => {
           handleClickk();
         }}
-        alt='ronaldo.gg'
-      >
-        
-      </img>
-      <button
+        alt="ronaldo.gg"
+      ></img>
+      {/* <button
         onClick={() => {
           handleClick();
         }}
       >
         Top ranks challenger
-      </button>
+      </button> */}
+      <div>
+        <Checkbox type="checkbox"></Checkbox>
+      </div>
     </div>
   );
 };

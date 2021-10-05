@@ -57,6 +57,7 @@ const Player = () => {
   }
 
   function handleClick(name) {
+    dispatch(wipe());
     history.push(`/player/${name}`);
   }
 
@@ -88,6 +89,7 @@ const Player = () => {
         <div className="matches_teste">
           {sortedmatches && sortedmatches.length == 11 ? (
             <div>
+              
               {sortedmatches.map((p, index) =>
                 index > 0 ? (
                   <div className="match_container">
