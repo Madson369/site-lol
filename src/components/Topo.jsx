@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { Checkbox } from "./Checkbox.styles";
+import { Button } from "./Button.styles";
 
 const Topo = () => {
   let history = useHistory();
@@ -29,9 +30,9 @@ const Topo = () => {
       >
         Top ranks challenger
       </button> */}
-      <div>
+      {/* <div>
         <Checkbox type="checkbox"></Checkbox>
-      </div>
+      </div> */}
     </div>
   );
 };

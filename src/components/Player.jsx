@@ -8,7 +8,8 @@ import { wipe } from "../actions/GetMatch";
 import { useHistory } from "react-router-dom";
 import { CalcTime } from "./CalcTime";
 import { Skeleton } from "./Skeleton.styles";
-import { Rotate } from "./Rotate";
+import { EloColor } from "./Elo.styles";
+
 const Player = () => {
   let { id } = useParams();
   const data = useSelector((state) => state.data);
@@ -38,6 +39,7 @@ const Player = () => {
 
   if (matches.length == 11) {
     console.log(matches);
+    console.log(data);
 
     let matchids = matches[0];
     let sortmatches = matches.slice(1).sort((a, b) => {
@@ -61,35 +63,108 @@ const Player = () => {
     history.push(`/player/${name}`);
   }
 
+  if (data && data.length == 2) {
+    console.log(typeof data[1][1]);
+  }
+
   return (
     <div className="container_content">
-      <div className="container_teste">
-        <div className="container_profile">
-          {data && data.length > 1 ? (
-            <div className="player_info">
-              <span className="player_bagulho">{data[0].name}</span>
-              <div className="profile_img_container">
-                <div className="level_header">{data[0].summonerLevel}</div>
-                <div className="icon_border">
-                  <img
-                    className="profile_img"
-                    alt="profile-icon"
-                    src={`${window.location.origin}/assets/images/${data[0].profileIconId}.png`}
-                  ></img>
+      <div className="container_profile">
+        {data && data.length > 1 ? (
+          <div className="player_info">
+            <span className="player_bagulho">{data[0].name}</span>
+            <div className="profile_img_container">
+              <div className="level_header">{data[0].summonerLevel}</div>
+              <div className="icon_border">
+                <img
+                  className="profile_img"
+                  alt="profile-icon"
+                  src={`${window.location.origin}/assets/images/${data[0].profileIconId}.png`}
+                ></img>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="skeleton_topo">
+            <Skeleton width={"105px"} height={"105px"}></Skeleton>
+            <Skeleton width={"220px"} height={"50px"}></Skeleton>
+          </div>
+        )}
+
+        {[0, 1].map((w, index) => {
+          return data && data.length == 2 && data[1].length !== 0 ? (
+            <div className="player_rank">
+              <div className="container_rank_img">
+                {" "}
+                <img
+                  class="rank_img"
+                  src={`${window.location.origin}/assets/ranked_emblems/${data[1][index].tier}.svg`}
+                ></img>
+              </div>
+              <div className="player_rank_info">
+                <div className="ranked_type">
+                  {" "}
+                  <span className="rank_queue_type">
+                    {data[1][index].queueType == "RANKED_SOLO_5x5"
+                      ? "Ranked Solo"
+                      : "Ranked Flex"}
+                  </span>
+                </div>
+
+                <EloColor color={data[1][index].tier}>
+                  {data[1][index].tier} {data[1][index].rank}
+                </EloColor>
+                <span className>
+                  {" "}
+                  <span className="slash">/</span>{" "}
+                  <span className="rank_lp">
+                    {data[1][index].leaguePoints}
+                    LP{" "}
+                  </span>
+                </span>
+                <div className="ranked_data">
+                  {" "}
+                  <span className="rank_wr">
+                    {" "}
+                    {Math.round(
+                      (data[1][index].wins /
+                        (data[1][index].wins + data[1][index].losses)) *
+                        100
+                    )}
+                    % WR{" "}
+                    <span className="rank_games_number">
+                      {data[1][index].wins + data[1][index].losses} Games
+                    </span>
+                  </span>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="skeleton_topo">
-              <Skeleton width={"105px"} height={"105px"}></Skeleton>
-              <Skeleton width={"220px"} height={"50px"}></Skeleton>
+            <div className="player_rank">
+              <div className="container_rank_img">
+                {" "}
+                <img
+                  class="rank_img"
+                  src={`${window.location.origin}/assets/ranked_emblems/UNRANKED.svg`}
+                ></img>
+              </div>
+              <div className="player_rank_info">
+                <EloColor color="UNRANKED">UNRANKED</EloColor>
+                <span className>
+                  {" "}
+                  <span className="slash">/</span>{" "}
+                  <span className="rank_lp">0 LP </span>
+                </span>
+                <div className="ranked_data"> </div>
+              </div>
             </div>
-          )}
-        </div>
+          );
+        })}
+      </div>
+      <div className="container_teste">
         <div className="matches_teste">
           {sortedmatches && sortedmatches.length == 11 ? (
             <div>
-              
               {sortedmatches.map((p, index) =>
                 index > 0 ? (
                   <div className="match_container">
@@ -251,126 +326,130 @@ const Player = () => {
                 ) : null
               )}
             </div>
-          ) : [0,1,2,3,4,5,6,7,8,9].map(() => {
-            return <div className="match_container">
-            <div className="skeleton_player_info">
-              <Skeleton
-                width={"50px"}
-                height={"10px"}
-                border={false}
-                margin={true}
-              ></Skeleton>
-              <Skeleton
-                width={"50px"}
-                height={"10px"}
-                border={false}
-                margin={true}
-              ></Skeleton>
-              <Skeleton
-                width={"50px"}
-                height={"10px"}
-                border={false}
-                margin={true}
-              ></Skeleton>
-            </div>
-            <div className="champion_face_container">
-              <Skeleton
-                width={"50px"}
-                height={"50px"}
-                border={false}
-                margin={false}
-              ></Skeleton>
-              <div className="spell_container">
-                <Skeleton
-                  width={"25px"}
-                  height={"25px"}
-                  border={false}
-                  margin={false}
-                ></Skeleton>
-                <Skeleton
-                  width={"25px"}
-                  height={"25px"}
-                  border={false}
-                  margin={false}
-                ></Skeleton>
-              </div>
-            </div>
-            <div className="kda_container">
-              <Skeleton
-                width={"50px"}
-                height={"10px"}
-                border={false}
-                margin={true}
-              ></Skeleton>
-              <Skeleton
-                width={"50px"}
-                height={"10px"}
-                border={false}
-                margin={true}
-              ></Skeleton>
-              <Skeleton
-                width={"50px"}
-                height={"10px"}
-                border={false}
-                margin={true}
-              ></Skeleton>
-            </div>
-            <div className="items_container">
-              <div className="item_overall">
-                <div className="item_teste">
-                  {[1, 2, 3, 4, 5, 6].map(() => {
-                    return (
+          ) : (
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(() => {
+              return (
+                <div className="match_container">
+                  <div className="skeleton_player_info">
+                    <Skeleton
+                      width={"50px"}
+                      height={"10px"}
+                      border={false}
+                      margin={true}
+                    ></Skeleton>
+                    <Skeleton
+                      width={"50px"}
+                      height={"10px"}
+                      border={false}
+                      margin={true}
+                    ></Skeleton>
+                    <Skeleton
+                      width={"50px"}
+                      height={"10px"}
+                      border={false}
+                      margin={true}
+                    ></Skeleton>
+                  </div>
+                  <div className="champion_face_container">
+                    <Skeleton
+                      width={"50px"}
+                      height={"50px"}
+                      border={false}
+                      margin={false}
+                    ></Skeleton>
+                    <div className="spell_container">
                       <Skeleton
-                        width={"27px"}
-                        height={"27px"}
+                        width={"25px"}
+                        height={"25px"}
                         border={false}
                         margin={false}
                       ></Skeleton>
-                    );
-                  })}
-                </div>
-                <div className="trinket">
-                  {" "}
-                  <Skeleton
-                    width={"27px"}
-                    height={"27px"}
-                    border={false}
-                    margin={false}
-                  ></Skeleton>
-                </div>
-              </div>
-            </div>
+                      <Skeleton
+                        width={"25px"}
+                        height={"25px"}
+                        border={false}
+                        margin={false}
+                      ></Skeleton>
+                    </div>
+                  </div>
+                  <div className="kda_container">
+                    <Skeleton
+                      width={"50px"}
+                      height={"10px"}
+                      border={false}
+                      margin={true}
+                    ></Skeleton>
+                    <Skeleton
+                      width={"50px"}
+                      height={"10px"}
+                      border={false}
+                      margin={true}
+                    ></Skeleton>
+                    <Skeleton
+                      width={"50px"}
+                      height={"10px"}
+                      border={false}
+                      margin={true}
+                    ></Skeleton>
+                  </div>
+                  <div className="items_container">
+                    <div className="item_overall">
+                      <div className="item_teste">
+                        {[1, 2, 3, 4, 5, 6].map(() => {
+                          return (
+                            <Skeleton
+                              width={"27px"}
+                              height={"27px"}
+                              border={false}
+                              margin={false}
+                            ></Skeleton>
+                          );
+                        })}
+                      </div>
+                      <div className="trinket">
+                        {" "}
+                        <Skeleton
+                          width={"27px"}
+                          height={"27px"}
+                          border={false}
+                          margin={false}
+                        ></Skeleton>
+                      </div>
+                    </div>
+                  </div>
 
-            <div className="skeleton_teams_overall">
-              <div className="teams_container">
-                <div className="team_1">
-                  {[1, 2, 3, 4, 5].map(() => {
-                    return (
-                      <Skeleton
-                        width={"80px"}
-                        height={"10px"}
-                        border={false}
-                        margin={true}
-                      ></Skeleton>
-                    );
-                  })}
+                  <div className="skeleton_teams_overall">
+                    <div className="teams_container">
+                      <div className="team_1">
+                        {[1, 2, 3, 4, 5].map(() => {
+                          return (
+                            <Skeleton
+                              width={"80px"}
+                              height={"10px"}
+                              border={false}
+                              margin={true}
+                            ></Skeleton>
+                          );
+                        })}
+                      </div>
+                      <div className="team_2">
+                        {[1, 2, 3, 4, 5].map(() => {
+                          return (
+                            <Skeleton
+                              width={"80px"}
+                              height={"10px"}
+                              border={false}
+                              margin={true}
+                            ></Skeleton>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="team_2">
-                  {[1, 2, 3, 4, 5].map(() => {
-                    return (
-                      <Skeleton
-                        width={"80px"}
-                        height={"10px"}
-                        border={false}
-                        margin={true}
-                      ></Skeleton>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-          })}
+              );
+            })
+          )}
         </div>
       </div>
     </div>

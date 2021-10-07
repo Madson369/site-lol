@@ -61,7 +61,7 @@ body {
 
 .player_info {
   display: flex;
-  padding: 15px 0 0 15px;
+  /* padding: 15px 0 0 15px; */
   height: 115px;
   width: 500px;
 }
@@ -116,6 +116,7 @@ body {
 .container_content {
   display: flex;
   height: calc(100vh - 36px);
+  flex-direction: column;
 }
 
 .container_teste {
@@ -141,6 +142,7 @@ body {
 
 .matches_teste {
   color: white;
+  width: 620px;
 }
 
 .team_1 {
@@ -153,7 +155,6 @@ body {
 }
 
 .match_container {
-  margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
   background-color: #11112a;
@@ -161,6 +162,7 @@ body {
   border-radius: 3px;
   height: 100px;
   width: 600px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .teams_container {
@@ -352,7 +354,6 @@ body {
   display: flex;
   width: 100px;
   height: 85px;
-
 }
 
 .skeleton_teste_container {
@@ -368,18 +369,73 @@ body {
   margin-bottom: 10px;
 }
 
-
-.skeleton_player_info{
+.skeleton_player_info {
   display: block;
-    margin: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    text-align: center;
+  margin: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
 }
 
-.skeleton_teams_overall{
+.skeleton_teams_overall {
   display: block;
   margin: auto;
   margin-left: 15px;
   margin-right: 0px;
+}
+
+.player_rank {
+  color: white;
+  display: flex;
+  background-color: #11112a;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+  width: 264px;
+  height: 78px;
+  padding: 0 12px;
+  border-radius: 3px;
+  padding-bottom: 8px;
+}
+
+.player_rank_info {
+  margin-top: 8px;
+}
+
+.container_profile {
+  padding: 15px 0 0 15px;
+}
+
+.container_rank_img {
+  width: 66px;
+}
+
+.rank_img {
+  width: 100%;
+  height: 100%;
+}
+
+.rank_queue_type {
+  color: #cddcfe;
+  font-size: 11px;
+}
+
+.rank_lp {
+  font-weight: bold;
+
+  font-size: 14px;
+}
+
+.rank_data {
+  font-size: 12px;
+}
+
+.rank_wr {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.rank_games_number {
+  margin-left: 6px;
+  color: #cddcfe;
+  font-size: 11px;
+  font-weight: 500;
 }
