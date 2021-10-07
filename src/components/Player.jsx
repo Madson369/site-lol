@@ -86,76 +86,130 @@ const Player = () => {
           </div>
         ) : (
           <div className="skeleton_topo">
-            <Skeleton width={"105px"} height={"105px"}></Skeleton>
+            <Skeleton width={"95px"} height={"95px"}></Skeleton>
             <Skeleton width={"220px"} height={"50px"}></Skeleton>
           </div>
         )}
 
         {[0, 1].map((w, index) => {
           return data && data.length == 2 && data[1].length !== 0 ? (
-            <div className="player_rank">
-              <div className="container_rank_img">
-                {" "}
-                <img
-                  class="rank_img"
-                  src={`${window.location.origin}/assets/ranked_emblems/${data[1][index].tier}.svg`}
-                ></img>
-              </div>
-              <div className="player_rank_info">
-                <div className="ranked_type">
-                  {" "}
-                  <span className="rank_queue_type">
-                    {data[1][index].queueType == "RANKED_SOLO_5x5"
-                      ? "Ranked Solo"
-                      : "Ranked Flex"}
-                  </span>
-                </div>
-
-                <EloColor color={data[1][index].tier}>
-                  {data[1][index].tier} {data[1][index].rank}
-                </EloColor>
-                <span className>
-                  {" "}
-                  <span className="slash">/</span>{" "}
-                  <span className="rank_lp">
-                    {data[1][index].leaguePoints}
-                    LP{" "}
-                  </span>
-                </span>
-                <div className="ranked_data">
-                  {" "}
-                  <span className="rank_wr">
+            <div>
+              {data[1][index] && JSON.stringify(data[1][index]) !== "{}" ? (
+                <div className="player_rank">
+                  <div className="container_rank_img">
                     {" "}
-                    {Math.round(
-                      (data[1][index].wins /
-                        (data[1][index].wins + data[1][index].losses)) *
-                        100
-                    )}
-                    % WR{" "}
-                    <span className="rank_games_number">
-                      {data[1][index].wins + data[1][index].losses} Games
+                    <img
+                      class="rank_img"
+                      src={`${window.location.origin}/assets/ranked_emblems/${data[1][index].tier}.svg`}
+                    ></img>
+                  </div>
+                  <div className="player_rank_info">
+                    <div className="ranked_type">
+                      {" "}
+                      <span className="rank_queue_type">
+                        {data[1][index].queueType == "RANKED_SOLO_5x5"
+                          ? "Ranked Solo"
+                          : "Ranked Flex"}
+                      </span>
+                    </div>
+
+                    <EloColor color={data[1][index].tier}>
+                      {data[1][index].tier} {data[1][index].rank}
+                    </EloColor>
+                    <span className>
+                      {" "}
+                      <span className="slash">/</span>{" "}
+                      <span className="rank_lp">
+                        {data[1][index].leaguePoints}
+                        LP{" "}
+                      </span>
                     </span>
-                  </span>
+                    <div className="ranked_data">
+                      {" "}
+                      <span className="rank_wr">
+                        {" "}
+                        {Math.round(
+                          (data[1][index].wins /
+                            (data[1][index].wins + data[1][index].losses)) *
+                            100
+                        )}
+                        % WR{" "}
+                        <span className="rank_games_number">
+                          {data[1][index].wins + data[1][index].losses} Games
+                        </span>
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="player_rank">
+                  <div className="container_rank_img">
+                    {" "}
+                    <img
+                      class="rank_img"
+                      src={`${window.location.origin}/assets/ranked_emblems/UNRANKED.svg`}
+                    ></img>
+                  </div>
+                  <div className="player_rank_info">
+                    <EloColor color="UNRANKED">UNRANKED</EloColor>
+                    <span className>
+                      {" "}
+                      <span className="slash">/</span>{" "}
+                      <span className="rank_lp">0 LP </span>
+                    </span>
+                    <div className="ranked_data"> </div>
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
-            <div className="player_rank">
-              <div className="container_rank_img">
-                {" "}
-                <img
-                  class="rank_img"
-                  src={`${window.location.origin}/assets/ranked_emblems/UNRANKED.svg`}
-                ></img>
-              </div>
-              <div className="player_rank_info">
-                <EloColor color="UNRANKED">UNRANKED</EloColor>
-                <span className>
+            <div>
+              <div className="player_rank">
+                <div className="container_rank_img">
                   {" "}
-                  <span className="slash">/</span>{" "}
-                  <span className="rank_lp">0 LP </span>
-                </span>
-                <div className="ranked_data"> </div>
+                  <Skeleton
+                    width={"66px"}
+                    height={"66px"}
+                    border={false}
+                    margin={false}
+                  ></Skeleton>
+                </div>
+                <div className="skeleton_player_rank_info">
+                  <div className="ranked_type">
+                    {" "}
+                    <Skeleton
+                      width={"55px"}
+                      height={"14px"}
+                      border={false}
+                      margin={false}
+                    ></Skeleton>
+                  </div>
+
+                  <div className='skeleton_rank'>
+                    {" "}
+                    <Skeleton
+                      width={"82px"}
+                      height={"19px"}
+                      border={false}
+                      margin={false}
+                    ></Skeleton>
+                    <Skeleton
+                      width={"30px"}
+                      height={"19px"}
+                      border={false}
+                      margin={false}
+                    ></Skeleton>
+                  </div>
+                  <div className="ranked_data">
+                    {" "}
+                    <Skeleton
+                      width={"70px"}
+                      height={"17px"}
+                      border={false}
+                      margin={false}
+                    ></Skeleton>
+                  </div>
+                </div>
               </div>
             </div>
           );
