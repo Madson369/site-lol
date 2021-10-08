@@ -67,6 +67,9 @@ function Home() {
   return (
     <div className="container">
       <div className="container_main">
+        <div >
+          <img className="search_image"  src={`${window.location.origin}/assets/lulu.png`} ></img>
+        </div>
         <div className="container_search">
           <div
             onBlur={() => {

@@ -7,8 +7,17 @@ body {
   background-color: #17172e;
 }
 
+
+
+
 .logo {
   cursor: pointer;
+  display: block;
+  margin: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  /* width: 75px; */
+  height: 78px;
 }
 .container {
   display: flex;
@@ -20,6 +29,8 @@ body {
   display: flex;
   align-items: center;
   margin: auto;
+  flex-direction: column;
+  margin-top: 75px;
 }
 
 .container_topo {
@@ -74,7 +85,7 @@ body {
 
 .player_bagulho {
   order: 2;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 600;
   color: white;
   margin-left: 15px;
@@ -384,16 +395,21 @@ body {
   margin-right: 0px;
 }
 
+.player_rank_container {
+  display: flex;
+}
+
 .player_rank {
   color: white;
   display: flex;
   background-color: #11112a;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+  /* box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%); */
   width: 264px;
   height: 78px;
   padding: 0 12px;
   border-radius: 3px;
   padding-bottom: 8px;
+  padding-right: 18px;
 }
 
 .player_rank_info {
@@ -402,6 +418,8 @@ body {
 
 .container_profile {
   padding: 15px 0 0 15px;
+  display: flex;
+  background-color: #11112a;
 }
 
 .container_rank_img {
@@ -440,9 +458,18 @@ body {
   font-weight: 500;
 }
 
-.skeleton_rank{
+.skeleton_rank {
   display: flex;
 }
-.skeleton_player_rank_info{
+.skeleton_player_rank_info {
   margin-top: 16px;
+}
+
+.search_image {
+  width: 100%;
+  height: 90%;
+}
+
+.container_profile_rank {
+  width: 620px;
 }
