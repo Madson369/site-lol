@@ -1,4 +1,4 @@
-crie um arquivo env e ponnha essa informação abaixo nele
+é necessario uma arquivo env com a chave de API para funcionamento
 
 
 REACT_APP_API_KEY=(Sua chave aqui)
